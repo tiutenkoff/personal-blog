@@ -1,0 +1,30 @@
+.embed,
+.fr-video {
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+.embed:before,
+.fr-video:before {
+  content: "";
+  display: block;
+  padding-top: 56.25%;
+}
+
+.embed iframe,
+.embed video,
+.embed object,
+.embed embed,
+.fr-video iframe,
+.fr-video video,
+.fr-video object,
+.fr-video embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+/*# sourceMappingURL=embed.css.map */

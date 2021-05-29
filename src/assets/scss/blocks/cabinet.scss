@@ -1,0 +1,46 @@
+.cabinet {
+    display: flex;
+    @include breakpoint($mobile-bp) {
+        flex-direction: column;
+    }
+}
+
+.cabinet__avatar {
+    flex-grow: 1;
+    padding-left: 11rem;
+    @include breakpoint($mobile-bp) {
+        order: 1;
+        padding-left: 0;
+        margin-bottom: 2rem;
+    }
+}
+
+.cabinet__avatar--img {
+    display: block;
+    height: 15rem;
+    width: 15rem;
+    overflow: hidden;
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+}
+
+.cabinet__form {
+    width: 34rem;
+    @include breakpoint($mobile-bp) {
+        order: 2;
+    }
+}
+
+.cabinet__file {
+    font-family: inherit;
+    font-size: 1.4rem;
+    color: $blue;
+    text-decoration: underline;
+    cursor: pointer;
+    input {
+        display: none;
+    }
+    &:hover {
+        text-decoration: none;
+    }
+}

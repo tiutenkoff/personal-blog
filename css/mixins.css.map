@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../../../../заказы/adaptQuiz/mixins.scss"
+    ],
+    "names": [],
+    "file": "mixins.css"
+}

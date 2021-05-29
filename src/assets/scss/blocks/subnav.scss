@@ -1,0 +1,44 @@
+.subnav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 16.5rem;
+    background-color: $blue;
+    border-radius: 0 0 5px 5px;
+    padding: .5rem 0;
+    box-shadow: 0 6px 8px rgba($black, .2);
+    @include breakpoint($tablet-bp) {
+        position: static;
+        width: 100%;
+        background-color: transparent;
+        box-shadow: none;
+        padding-left: 1.7rem;
+    }
+}
+
+.subnav__link {
+    display: block;
+    text-decoration: none;
+    color: $white;
+    font-size: 1.2rem;
+    padding: .45rem 1.2rem;
+    transition: background-color .2s ease-in-out;
+    &:hover {
+        background-color: darken($blue, 15%);
+        text-decoration: none;
+    }
+    @include breakpoint($tablet-bp) {
+        padding-left: 0;
+        padding-right: 0;
+        font-size: 1.5rem;
+        &:hover {
+            background: none;
+        }
+    }
+}
+
+.related__list-date {
+    font-size: 1.2rem;
+    color: #828282;
+}

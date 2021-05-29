@@ -1,0 +1,13 @@
+.social-modal {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.social-modal__item {
+  margin: 0 0.75rem;
+}
+/*# sourceMappingURL=social.css.map */

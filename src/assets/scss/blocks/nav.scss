@@ -1,0 +1,82 @@
+.nav {
+    &--mobile {
+        display: none;
+    }
+    @include breakpoint($tablet-bp) {
+        display: none;
+        &--mobile {
+            display: block;
+            margin: 3rem 0;
+        }
+    }
+}
+
+.nav__list {
+    display: flex;
+    @include breakpoint($tablet-bp) {
+        flex-direction: column;
+    }
+}
+
+.nav__item {
+    position: relative;
+
+
+    &:hover {
+        .nav__link{
+            background-color: $blue;
+            text-decoration: none;
+        }
+    
+        >.subnav {
+            display: block;
+        }
+    }
+    @include breakpoint($tablet-bp) {
+
+        &:hover {
+            .nav__link {
+                background: none;
+            }
+        }
+    }
+}
+
+.nav__link {
+    display: block;
+    font-size: 1.1rem;
+    padding: 1.35rem;
+    line-height: 1.2;
+    color: $white;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color .2s linear;
+    
+    &.has-subnav {
+        position: relative;
+        padding-right: 3.5rem;
+        &::after{
+            content: "";
+            position: absolute;
+            top: 50%;
+            margin-top: 2px;
+            transform: translateY(-50%);
+            right: 1.35rem;;
+            display: block;
+            border-style: solid;
+            border-width: 6px 5px 0 5px;
+            border-color: $white transparent transparent transparent;
+        }
+    }
+    @include breakpoint($tablet-bp) {
+        padding-left: 0;
+        padding-right: 0;
+        font-size: 1.6rem;
+        text-transform: none;
+    }
+}
+
+.header__right {
+    display: flex;
+    justify-content: flex-end;
+}

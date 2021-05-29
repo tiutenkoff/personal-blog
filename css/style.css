@@ -1,0 +1,822 @@
+@charset "UTF-8";
+/* Правила для экранной версии представления данных */
+/* @import "mixins";
+@import "vars"; */
+@media screen {
+  /* Общие установки для страницы */
+  html,
+  body {
+    width: 100%;
+    margin: 0 auto;
+  }
+  body {
+    overflow-x: hidden;
+    color: black;
+    background: #999 url(images/bg_page.gif) scroll;
+    font-family: "Open Sans", sans-serif;
+  }
+  .bgimg {
+    z-index: 1;
+    overflow: hidden;
+    left: 140px;
+    position: relative;
+    display: block;
+  }
+  #bgimg3 {
+    left: 280px;
+    top: -5px;
+    position: absolute;
+  }
+  #gg {
+    max-width: 50px;
+    z-index: 3;
+    left: 140px;
+  }
+  .bgimg2 {
+    z-index: 1;
+    overflow: hidden;
+    left: -90px;
+    position: relative;
+    display: block;
+  }
+  #maincontent {
+    max-height: 52px;
+    max-width: 100%;
+    margin: 20px auto;
+    display: block;
+    z-index: 8;
+  }
+  /* "Подложка" для всей страницы */
+  #carrier {
+    width: 100%;
+    background: #211f1f;
+  }
+  /* Шрифт для "шапки", меню навигации, заголовков второго уровня в основном тексте и "подвала" */
+  #header,
+  #verh,
+  #menu,
+  #text h2,
+  #footer {
+    font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+  }
+  /* Общие правила оформления "шапки" и "подвала" */
+  #header,
+  #footer p {
+    color: #fff;
+    background: #092143;
+    padding: 30px 60px;
+    margin: 0px;
+  }
+  /* Представление "шапки" */
+  #header {
+    font-size: 250%;
+    border-bottom: solid 15px #000;
+  }
+  /* На внутренних страницах сайта титульная надпись в "шапке"
+выступает в качестве ссылки на главную страницу. Для этой
+ссылки задаются такие правила, чтобы она визуально была
+неотличима от заголовка без ссылки */
+  #header a:link,
+  #header a:visited,
+  #header a:hover,
+  #header a:active {
+    color: #fff;
+    text-decoration: none;
+  }
+  /* "Подложка" для навигационного меню. Ширина области навигации
+постоянна во всех браузерах и составляет 200 пикселей */
+  #menucarrier {
+    max-width: 13%;
+    margin-bottom: 200px;
+    float: left;
+    background: url(images/menu.jfif) center repeat-y scroll;
+  }
+  /* Собственно блок навигации */
+  #menu {
+    font-size: 17px;
+    text-align: left;
+    padding: 10px 10px;
+    border-width: 10px 20px 20px 10px;
+    border-color: black;
+    margin-left: -20px;
+  }
+  /* Хитрые игры со свойствами margin и padding имеют целью
+полную совместимость с IE5. Блок навигации отображается в IE5
+так же, как и в более современных браузерах. "Кнопки"
+навигационного меню расположены на расстоянии 20 пикселей
+друг от друга и от границ навигационного блока по вертикали */
+  #menu p {
+    padding: 32px 10px;
+    margin: 1px;
+  }
+  /* При помощи свойства display мы превращаем гиперссылки и
+контейнер <span>...</span>, размещенные в блоке навигации, из
+внутристрочных элементов в блочные, что дает нам возможность
+указать ширину при помощи свойства width */
+  #menu a,
+  #menu span {
+    display: block;
+    max-width: 170px;
+    margin: auto;
+  }
+  .sub-menu {
+    display: none;
+  }
+  .main-item:focus ~ .sub-menu,
+  .main-item:active ~ .sub-menu,
+  .sub-menu:hover {
+    display: block;
+  }
+  #main_nav {
+    position: absolute;
+    top: 13.5%;
+    margin-top: -5%;
+  }
+  #main_nav li {
+    display: inline;
+    padding: 0 4px;
+    position: relative;
+    z-index: 3;
+  }
+  #main_nav li:first-child,
+  #main_nav ul li {
+    border-left: none;
+  }
+  #main_nav ul {
+    display: none;
+    position: absolute;
+    top: 19px;
+    left: 10;
+    z-index: 2;
+    max-width: 10%;
+  }
+  #main_nav li a,
+  #main_nav li ul li a {
+    color: #e2e2e1;
+    font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+    font-size: 1.1em;
+    font-weight: bold;
+    text-decoration: none;
+    outline: none;
+    padding-bottom: 15px;
+  }
+  .t {
+    font-size: 0.7em;
+    margin-left: -45px;
+  }
+  /*---------------------------------------------------------------------------------------------*/
+  #main_nav li a:hover,
+  #main_nav li ul a:hover {
+    color: black;
+  }
+  /*--------------Подменю--------------*/
+  #main_nav li:hover ul {
+    display: block;
+  }
+  /* Далее следуют правила представления "кнопок" навигационного меню.
+Их четыре вида: 1) обыкновенные; 2) выделенные при помощи курсора
+мыши; 3) соответствующие текущему "магистральному" разделу и
+предназначенные для его внутренних страниц - для таких "кнопок"
+назначен класс current; 4) соответствующие текущей
+странице и поэтому не являющиеся ссылками - этот вид "кнопок"
+представлен элементами <span>...</span> */
+  ul.ff {
+    list-style-type: none;
+  }
+  ul {
+    list-style-position: inside;
+    color: #dadada;
+    border: solid 2px #00000058;
+    text-decoration: none;
+    margin-left: 525px;
+    padding: 20px;
+  }
+  p.txt,
+  #menu a {
+    color: #dadada;
+    text-decoration: none;
+  }
+  div.txt,
+  #menu a {
+    color: #dadada;
+    text-decoration: none;
+  }
+  #menu a:link,
+  #menu a:visited {
+    background: #0d090158;
+    border: solid 2px #00000058;
+  }
+  #menu a:hover,
+  #menu a:active,
+  #menu a.current:link,
+  #menu a.current:visited,
+  #menu span {
+    border-style: solid dotted;
+    border-width: 2px;
+    border-color: black;
+  }
+  #menu a.current:link,
+  #menu a.current:visited,
+  #menu span {
+    background: #ffffff38;
+  }
+  #menu span {
+    color: #999;
+  }
+  #menu a.current:hover,
+  #menu a.current:active {
+    background: #fff0cc;
+  }
+  /* Дальнейшие правила определяют оформление элементов области
+основного текстового содержания страницы */
+  #text {
+    margin-left: 200px;
+    padding: 20px;
+  }
+  #text h2 {
+    font-size: 120%;
+    font-weight: normal;
+    text-transform: uppercase;
+    color: #369;
+  }
+  /* Псевдокласс first-child указывает на первый вложенный
+в блок #text заголовок <h2>...</h2>. Для таких заголовков
+верхний вертикальный отступ устанавливается равным нулю.
+Впрочем, Internet Explorer не понимает этого псевдокласса,
+так что в браузере от Microsoft первый заголовок области
+основного текста будет расположен заметно дальше от
+"шапки", нежели в браузерах, относящихся к рекомендациям
+W3C более уважительно */
+  #text h2:first-child {
+    margin-top: 0px;
+  }
+  /* Абзацы основного текста оформляются в соответствии
+с традициями русскоязычного текстового набора */
+  #text p {
+    text-align: justify;
+    text-indent: 1.5em;
+    margin: 0px;
+  }
+  /* Класс абзацев, предназначенный для новостей сайта */
+  #text p.news {
+    text-align: left;
+    text-indent: 0pt;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+  /* Класс, позволяющий выделять полужирным начертанием
+даты свежих обновлений сайта */
+  .date {
+    font-weight: bold;
+  }
+  /* Представление нумерованных и маркированных списков
+в основном тексте */
+  #text ul,
+  text ol {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  #text ul {
+    list-style-type: square;
+  }
+  /* Оформление ссылок в основном тексте */
+  #text a {
+    text-decoration: none;
+  }
+  #text a:link {
+    color: #f60;
+  }
+  #text a:visited {
+    color: #999;
+  }
+  #text a:hover {
+    text-decoration: underline;
+  }
+  #text a:active {
+    color: black;
+  }
+  /* Правила, определяющие представление "подвала" и содержащихся в нем
+элементов - абзацев и гипертекстовых ссылок */
+  #footer {
+    width: 100%;
+    clear: both;
+  }
+  #footer p {
+    font-size: 70%;
+    border-top: solid 15px #000;
+    border-bottom: solid 15px #092143;
+  }
+  #footer a:link,
+  #footer a:visited,
+  #footer a:hover,
+  #footer a:active {
+    color: #fff;
+    text-decoration: underline;
+  }
+}
+
+/* Правила, определяющие версию представления данных для карманных
+компьютеров. Никак не взаимосвязаны с правилами, определенными
+для экранной версии представления. Перечисленные ниже конструкции
+очень простые, комментировать здесь почти нечего. Все блоки
+позиционированы согласно простейшей схеме static и следуют
+друг за другом в нормальном потоке. Размер шрифта для всего
+текста страницы задан в пикселях: 16 пикселей для заголовков
+первого уровня, 14 - для заголовков второго уровня и 12 - для
+всех остальных элементов */
+@media handheld {
+  html,
+  body {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+  }
+  body {
+    font: 12px Tahoma, Arial, Helvetica, sans-serif;
+    color: #000;
+    background: #fff;
+  }
+  #header,
+  #menucarrier,
+  #text,
+  #footer {
+    padding: 5px;
+  }
+  #header,
+  #footer {
+    background: #ccc;
+  }
+  #header {
+    font-size: 16px;
+    margin: 0px;
+  }
+  #menucarrier {
+    background: #fff0cc;
+    border-top: solid 1px #666;
+    border-bottom: solid 1px #666;
+  }
+  #footer {
+    border-top: solid 1px #666;
+  }
+  h2,
+  p {
+    margin: 5px 0px;
+  }
+  #text h2 {
+    font-size: 14px;
+  }
+  ul {
+    list-style: square inside;
+    margin: 5px;
+    padding: 0px;
+  }
+  li {
+    margin: 0px;
+    padding: 0px;
+  }
+  a:link {
+    color: #00f;
+  }
+  a:visited {
+    color: #609;
+  }
+}
+
+p.txt {
+  text-align: justify;
+  border: 1px solid black;
+  /* Параметры рамки */
+  padding: 5px;
+  /* Поля вокруг текста */
+  margin-bottom: 5px;
+  /* Отступ снизу */
+  margin-left: 700px;
+  margin-right: auto;
+  width: 50em;
+}
+
+/* Правила для печатной версии представления данных.
+Этот фрагмент листа стилей еще проще. При помощи свойства
+display со значением none мы скрываем все элементы, не
+требующиеся в печатной версии - "шапку", блок навигации
+и "подвал". Остается только область основного текста.
+Используем рубленый шрифт кегля 16 пунктов для заголовков,
+антикву кегля 12 пунктов для всего остального. Всему
+тексту, включая гиперссылки, назначаем черный цвет. */
+.rotate {
+  -webkit-transition-duration: 0.8s;
+  transition-duration: 0.8s;
+  -webkit-transition-property: -webkit-transform;
+  transition-property: -webkit-transform;
+  transition-property: transform;
+  transition-property: transform, -webkit-transform;
+  overflow: hidden;
+  z-index: 2;
+  overflow: hidden;
+  left: 250px;
+  top: -930px;
+  position: relative;
+  display: block;
+}
+
+.rotate:hover {
+  cursor: pointer;
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url(http://habrastorage.org/files/996/d76/d04/996d76d0410d422fa54cc433ce7ead2a.png);
+}
+
+.wrapper {
+  height: 350px;
+  margin: 100px auto 0;
+  position: relative;
+  width: 640px;
+}
+
+.slider {
+  background-color: #ddd;
+  height: inherit;
+  overflow: hidden;
+  position: relative;
+  width: inherit;
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  -o-box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.wrapper > input {
+  display: none;
+}
+
+.slides {
+  height: inherit;
+  position: absolute;
+  width: inherit;
+}
+
+.wrapper .controls {
+  left: 50%;
+  margin-left: -98px;
+  position: absolute;
+}
+
+.wrapper label {
+  cursor: pointer;
+  display: inline-block;
+  height: 8px;
+  margin: 25px 12px 0 16px;
+  position: relative;
+  width: 8px;
+  border-radius: 50%;
+}
+
+.wrapper label:after {
+  border: 2px solid #ddd;
+  content: " ";
+  display: block;
+  height: 12px;
+  left: -4px;
+  position: absolute;
+  top: -4px;
+  width: 12px;
+  border-radius: 50%;
+}
+
+.wrapper label {
+  cursor: pointer;
+  display: inline-block;
+  height: 8px;
+  margin: 25px 12px 0 16px;
+  position: relative;
+  width: 8px;
+  border-radius: 50%;
+  -webkit-transition: background ease-in-out 0.5s;
+  transition: background ease-in-out 0.5s;
+}
+
+.st {
+  background: #004050;
+  width: 100%;
+  height: 100%;
+  font-family: lato;
+  font-weight: 300;
+  overflow: hidden;
+}
+
+p.st {
+  background-size: 2px 2px, cover;
+  background-repeat: repeat, none;
+  background-position: 0 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-box-shadow: 0 0 2rem rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 2rem rgba(0, 0, 0, 0.5);
+  border-radius: 3px;
+  font-family: "Great Vibes";
+}
+
+.wrapper label:hover,
+#slide1:checked ~ .controls label:nth-of-type(1),
+#slide2:checked ~ .controls label:nth-of-type(2),
+#slide3:checked ~ .controls label:nth-of-type(3),
+#slide4:checked ~ .controls label:nth-of-type(4),
+#slide5:checked ~ .controls label:nth-of-type(5) {
+  background: #ddd;
+}
+
+.slides {
+  height: inherit;
+  opacity: 0;
+  position: absolute;
+  width: inherit;
+  z-index: 0;
+  -webkit-transform: scale(1.5);
+  transform: scale(1.5);
+  -webkit-transition: transform ease-in-out 0.5s, opacity ease-in-out 0.5s;
+  -webkit-transition: opacity ease-in-out 0.5s, -webkit-transform ease-in-out 0.5s;
+  transition: opacity ease-in-out 0.5s, -webkit-transform ease-in-out 0.5s;
+  transition: transform ease-in-out 0.5s, opacity ease-in-out 0.5s;
+  transition: transform ease-in-out 0.5s, opacity ease-in-out 0.5s, -webkit-transform ease-in-out 0.5s;
+}
+
+#slide1:checked ~ .slider > .slide1,
+#slide2:checked ~ .slider > .slide2,
+#slide3:checked ~ .slider > .slide3,
+#slide4:checked ~ .slider > .slide4,
+#slide5:checked ~ .slider > .slide5 {
+  opacity: 1;
+  z-index: 1;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+
+@media print {
+  body {
+    color: #d3d1d1;
+    font: 12pt "Times New Roman", Times, serif;
+  }
+  #header,
+  #menucarrier,
+  #footer {
+    display: none;
+  }
+  #text h2 {
+    font: 16pt Arial, Helvetica, sans-serif;
+  }
+  #text a {
+    color: #000;
+    text-decoration: none;
+  }
+  h1 {
+    font: 120% Tahoma, Verdana, Arial, Helvetica, sans-serif;
+    border-top: none;
+    border-right: none;
+    border-left: solid 15px #c00;
+    border-bottom: solid 3px #c00;
+  }
+  :-moz-placeholder {
+    color: blue;
+  }
+  ::-webkit-input-placeholder {
+    color: blue;
+  }
+}
+
+*:focus {
+  outline: none;
+}
+
+body {
+  font: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", sans-serif;
+}
+
+.contact_form h2,
+.contact_form label {
+  font-family: Georgia, Times, "Times New Roman", serif;
+}
+
+.form_hint,
+.required_notification {
+  font-size: 11px;
+}
+
+.contact_form ul {
+  width: 750px;
+  list-style-type: none;
+  list-style-position: outside;
+  margin: 0px;
+  padding: 0px;
+}
+
+.contact_form li {
+  padding: 12px;
+  list-style-type: none;
+  border-bottom: 1px solid #eee;
+  position: relative;
+}
+
+.contact_form li:first-child,
+.contact_form li:last-child {
+  border-bottom: 1px solid #777;
+}
+
+.contact_form h2 {
+  margin: 0;
+  display: inline;
+}
+
+.required_notification {
+  color: #d45252;
+  margin: 5px 0 0 0;
+  display: inline;
+  float: right;
+}
+
+.contact_form label {
+  width: 150px;
+  margin-top: 3px;
+  display: inline-block;
+  float: left;
+  padding: 3px;
+}
+
+.contact_form input {
+  height: 20px;
+  width: 220px;
+  padding: 5px 8px;
+}
+
+.contact_form textarea {
+  padding: 8px;
+  width: 300px;
+}
+
+.contact_form button {
+  margin-left: 156px;
+}
+
+.contact_form input,
+.contact_form textarea {
+  border: 1px solid #aaa;
+  -webkit-box-shadow: 0px 0px 3px #ccc, 0 10px 15px #eee inset;
+          box-shadow: 0px 0px 3px #ccc, 0 10px 15px #eee inset;
+  border-radius: 2px;
+}
+
+.contact_form input:focus,
+.contact_form textarea:focus {
+  background: #fff;
+  border: 1px solid #555;
+  -webkit-box-shadow: 0 0 3px #aaa;
+          box-shadow: 0 0 3px #aaa;
+}
+
+/* Button Style */
+button.submit {
+  background-color: #68b12f;
+  background: -webkit-gradient(linear, left top, left bottom, from(#68b12f), to(#50911e));
+  background: linear-gradient(top, #68b12f, #50911e);
+  border: 1px solid #509111;
+  border-bottom: 1px solid #5b992b;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  box-shadow: inset 0 1px 0 0 #9fd574;
+  -webkit-box-shadow: 0 1px 0 0 #9fd574 inset;
+  -moz-box-shadow: 0 1px 0 0 #9fd574 inset;
+  -ms-box-shadow: 0 1px 0 0 #9fd574 inset;
+  -o-box-shadow: 0 1px 0 0 #9fd574 inset;
+  color: white;
+  font-weight: bold;
+  padding: 6px 20px;
+  text-align: center;
+  text-shadow: 0 -1px 0 #396715;
+}
+
+button.submit:hover {
+  opacity: 0.85;
+  cursor: pointer;
+}
+
+button.submit:active {
+  border: 1px solid #20911e;
+  box-shadow: 0 0 10px 5px #356b0b inset;
+  -webkit-box-shadow: 0 0 10px 5px #356b0b inset;
+  -moz-box-shadow: 0 0 10px 5px #356b0b inset;
+  -ms-box-shadow: 0 0 10px 5px #356b0b inset;
+  -o-box-shadow: 0 0 10px 5px #356b0b inset;
+}
+
+.contact_form input:focus,
+.contact_form textarea:focus {
+  /* add this to the already existing style */
+  padding-right: 70px;
+}
+
+.contact_form input,
+.contact_form textarea {
+  /* add this to the already existing style */
+  -webkit-transition: padding 0.25s;
+  transition: padding 0.25s;
+}
+
+.contact_form input,
+.contact_form textarea {
+  padding-right: 30px;
+}
+
+input:required,
+textarea:required {
+  background: #fff url(images/red_asterisk.png) no-repeat 98% center;
+}
+
+::-webkit-validation-bubble-message {
+  padding: 1em;
+}
+
+.contact_form input:focus:invalid,
+.contact_form textarea:focus:invalid {
+  /* when a field is considered invalid by the browser */
+  background: #fff url(images/invalid.png) no-repeat 98% center;
+  -webkit-box-shadow: 0 0 5px #d45252;
+          box-shadow: 0 0 5px #d45252;
+  border-color: #b03535;
+}
+
+.contact_form input:required:valid,
+.contact_form textarea:required:valid {
+  /* when a field is considered valid by the browser */
+  background: #fff url(images/valid.png) no-repeat 98% center;
+  -webkit-box-shadow: 0 0 5px #5cd053;
+          box-shadow: 0 0 5px #5cd053;
+  border-color: #28921f;
+}
+
+.form_hint {
+  background: #d45252;
+  border-radius: 3px 3px 3px 3px;
+  color: white;
+  margin-left: 8px;
+  padding: 1px 6px;
+  z-index: 999;
+  /* hints stay above all other elements */
+  position: absolute;
+  /* allows proper formatting if hint is two lines */
+  display: none;
+}
+
+.form_hint::before {
+  content: "\25C0";
+  /* треугольник, указующий влево, в  escaped unicode */
+  color: #d45252;
+  position: absolute;
+  top: 1px;
+  left: -6px;
+}
+
+.contact_form input:focus + .form_hint {
+  display: inline;
+}
+
+.contact_form input:required:valid + .form_hint {
+  background: #28921f;
+}
+
+/* change form hint color when valid */
+.contact_form input:required:valid + .form_hint::before {
+  color: #28921f;
+}
+
+/* change form hint arrow color when valid */
+/* Попытки в адаптивность */
+img {
+  max-width: 100%;
+}
+
+form {
+  float: left;
+  max-width: 62%;
+}
+
+.text2 {
+  float: right;
+  max-width: 30%;
+}
+/*# sourceMappingURL=style.css.map */
